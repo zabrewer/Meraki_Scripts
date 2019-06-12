@@ -67,7 +67,6 @@ elif script_mode == '2':
                 print('\n')
             else:
                 print(MyLicClaim)
-            #print(apikey, orgid, serial, licensekey, licensemode, orderid)
         print(f'Processed {lic_count} licenses.  See returned HTTP status codes above for individual status.')
         print('hint:  404 codes are often caused by mistyped API key, mistyped Org ID, or an api key that does not have access to the Org')
 else:
