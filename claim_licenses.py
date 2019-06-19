@@ -1,28 +1,48 @@
 
-#######################################################################################################################
-#
-# claim_licenses.py
-#
-# Overview
-# Quick script I wrote to help a customer claim multiple meraki licenses from an excel file.
-# The script expects CSV file called "licenses.csv" in the same directory as the script
-# The CSV file must have 3 column headers in the first row - lic_key, lic_mode, and org_id
-#
-# lic_key column should contain Meraki Dashboard licenses (license keys only, if you want SNs or order #s, modify the script) 
-# lic_mode column can ONLY be renew or addDevices as per the Meraki Dashboard API for claiming licenses
-# org_id column should be the ORGID where you want the licenses claimed (needed to support multiple orgs for my use case)
-#
-# one other note - be aware API rate limit of 5 calls per sec per org especially if you have a lot of lic keys
-# you can utilize exponential backoff or do something as simple as to add a time.sleep(X) to the for loop on line 58
-#
-# Provided with NO WARRANTY of any kind
-#
-# Dependencies
-# - Python 3.6
-# - requests module
-# - meraki module
-#
-#######################################################################################################################
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Overview
+Quick script I wrote to help a customer claim multiple meraki licenses from an excel file.
+The script expects CSV file called "licenses.csv" in the same directory as the script
+The CSV file must have 3 column headers in the first row - lic_key, lic_mode, and org_id
+
+lic_key column should contain Meraki Dashboard licenses (license keys only, if you want SNs or order #s, modify the script) 
+lic_mode column can ONLY be renew or addDevices as per the Meraki Dashboard API for claiming licenses
+org_id column should be the ORGID where you want the licenses claimed (needed to support multiple orgs for my use case)
+
+one other note - be aware API rate limit of 5 calls per sec per org especially if you have a lot of lic keys
+you can utilize exponential backoff or do something as simple as to add a time.sleep(X) to the for loop on line 58
+
+Dependencies
+- Python 3.6
+- requests module
+- meraki module
+
+Copyright (c) 2019 Cisco and/or its affiliates.
+
+This software is licensed to you under the terms of the Cisco Sample
+Code License, Version 1.1 (the "License"). You may obtain a copy of the
+License at
+
+               https://developer.cisco.com/docs/licenses
+
+All use of the material herein must be in accordance with the terms of
+the License. All rights not expressly granted by the License are
+reserved. Unless required by applicable law or agreed to separately in
+writing, software distributed under the License is distributed on an "AS
+IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+or implied.
+
+"""
+
+__author__ = "Zach Brewer"
+__email__ = "zbrewer@cisco.com"
+__version__ = "0.1.0"
+__copyright__ = "Copyright (c) 2019 Cisco and/or its affiliates."
+__license__ = "Cisco Sample Code License, Version 1.1"
+claim_licenses.py
 
 from meraki import meraki
 import csv
